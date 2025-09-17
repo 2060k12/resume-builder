@@ -5,6 +5,7 @@ import { PrimaryButton } from "../Buttons";
 import FormTemplateComponent from "./template/FormTemplateComponent";
 
 const First = () => {
+  // todo:// Need to add social media screen later
   return (
     <FormTemplateComponent
       headerTitle={"Let's Start with the Basics"}

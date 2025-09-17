@@ -15,8 +15,15 @@ const PrimaryButton = ({ label, onClick }: Props) => {
   );
 };
 
-const SecondaryButton = () => {
-  return <div>Buttons</div>;
+const SecondaryButton = ({ label, onClick }: Props) => {
+  return (
+    <button
+      onClick={onClick}
+      className="bg-gray-300 text-black  rounded-xl w-full  p-3 hover:bg-gray-200"
+    >
+      {label}
+    </button>
+  );
 };
 
 export { PrimaryButton, SecondaryButton };

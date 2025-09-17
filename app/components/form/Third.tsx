@@ -5,17 +5,29 @@ import { PrimaryButton, SecondaryButton } from "../Buttons";
 import FormTemplateComponent from "./template/FormTemplateComponent";
 import TextArea from "../TextArea";
 
-const Second = () => {
+const Third = () => {
   return (
     <FormTemplateComponent
-      headerTitle={"Tell Us Your Story"}
+      headerTitle={"Your Academic Journey"}
       buttonCount={2}
       subTitle={
-        "In a few sentences, summarize your professional journey, key achievements, and career goals. "
+        "Provide details about your degrees and certifications. You can add more than one."
       }
       formBody={
         <>
-          <TextArea line={5} label="Write your story here ...." />
+          <TextFileld type="text" label="School Name" />
+          <TextFileld type="text" label="Location" />
+          <div className="flex gap-2">
+            <TextFileld type="text" label="Degree/Certification" />
+            <div className="w-32">
+              <TextFileld type="text" label="GPA" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            <TextFileld type="text" label="Field of Study" />{" "}
+            <TextFileld type="text" label="Graduation Year" />
+          </div>
         </>
       }
       formButtons={
@@ -38,4 +50,4 @@ const Second = () => {
   );
 };
 
-export default Second;
+export default Third;
