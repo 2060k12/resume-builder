@@ -3,6 +3,7 @@ import React from "react";
 interface Props {
   label: string;
   onClick: () => void;
+  style?: string;
 }
 const PrimaryButton = ({ label, onClick }: Props) => {
   return (
@@ -26,4 +27,15 @@ const SecondaryButton = ({ label, onClick }: Props) => {
   );
 };
 
-export { PrimaryButton, SecondaryButton };
+const CustomButton = ({ label, onClick, style }: Props) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${style} text-black  rounded-xl w-full  p-3`}
+    >
+      {label}
+    </button>
+  );
+};
+
+export { PrimaryButton, SecondaryButton, CustomButton };
