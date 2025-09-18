@@ -1,21 +1,19 @@
 "use client";
 import React, { ReactNode } from "react";
-import { PrimaryButton } from "../../Buttons";
 
 interface Props {
   headerTitle: String;
   subTitle: String;
-  formButtons: ReactNode;
+  // formButtons: ReactNode;
   formBody: ReactNode;
-  buttonCount?: number;
+  // buttonCount?: number;
 }
 
 const FormTemplateComponent = ({
   headerTitle,
   subTitle,
-  formButtons,
+  // formButtons,
   formBody,
-  buttonCount = 1,
 }: Props) => {
   return (
     <div className="flex flex-col">
@@ -24,13 +22,13 @@ const FormTemplateComponent = ({
         <h4>{subTitle}</h4>
       </div>
       <div className="flex flex-col gap-2">{formBody}</div>
-      <div
+      {/* <div
         className={`w-full mt-4 ${
           buttonCount > 1 ? "grid grid-cols-2 gap-2" : ""
         } `}
       >
         {formButtons}
-      </div>
+      </div> */}
     </div>
   );
 };

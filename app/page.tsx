@@ -1,21 +1,14 @@
-import Image from "next/image";
-import First from "./components/form/First";
-import Second from "./components/form/Second";
-import Third from "./components/form/Third";
-import Forth from "./components/form/Forth";
-import Fifth from "./components/form/Fifth";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex justify-center items-center h-screen w-full ">
-      {/* Form Container */}
-      <div className="w-[700px] shadow-xl h-[500px] bg-[#FFFFFF] rounded-4xl py-16 px-20">
-        {/* <First /> */}
-        {/* <Second /> */}
-        {/* <Third /> */}
-        {/* <Forth /> */}
-        <Fifth />
-      </div>
+    <div className="flex justify-center items-center h-screen w-full  gap-3">
+      <Link href={"/builder"}>
+        <h1>Dashboard</h1>
+      </Link>
+      <Link href={"/onboarding"}>
+        <h1>Onboarding</h1>
+      </Link>
     </div>
   );
 }

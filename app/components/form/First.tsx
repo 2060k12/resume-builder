@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import TextFileld from "../TextFileld";
-import { PrimaryButton } from "../Buttons";
+
 import FormTemplateComponent from "./template/FormTemplateComponent";
 
 const First = () => {
@@ -18,16 +18,6 @@ const First = () => {
           <TextFileld type="tel" label="Phone Number" />
           <TextFileld type="email" label="Email" />
           <TextFileld type="text" label="Address" />
-        </>
-      }
-      formButtons={
-        <>
-          <PrimaryButton
-            label="Continue"
-            onClick={() => {
-              console.log("");
-            }}
-          />
         </>
       }
     />

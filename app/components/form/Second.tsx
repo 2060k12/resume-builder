@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import TextFileld from "../TextFileld";
-import { PrimaryButton, SecondaryButton } from "../Buttons";
+
 import FormTemplateComponent from "./template/FormTemplateComponent";
 import TextArea from "../TextArea";
 
@@ -9,28 +8,15 @@ const Second = () => {
   return (
     <FormTemplateComponent
       headerTitle={"Tell Us Your Story"}
-      buttonCount={2}
       subTitle={
         "In a few sentences, summarize your professional journey, key achievements, and career goals. "
       }
       formBody={
         <>
-          <TextArea line={5} label="Write your story here ...." />
-        </>
-      }
-      formButtons={
-        <>
-          <SecondaryButton
-            label="Back"
-            onClick={() => {
-              console.log("");
-            }}
-          />
-          <PrimaryButton
-            label="Continue"
-            onClick={() => {
-              console.log("");
-            }}
+          <TextArea
+            style="mb-[5px]"
+            line={6}
+            label="Write your story here ...."
           />
         </>
       }

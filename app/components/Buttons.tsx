@@ -31,7 +31,7 @@ const CustomButton = ({ label, onClick, style }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`${style} text-black  rounded-xl w-full  p-3`}
+      className={`${style} text-black  rounded-xl w-full `}
     >
       {label}
     </button>
