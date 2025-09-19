@@ -23,7 +23,7 @@ const BuilderPage = () => {
         </div>
         <div className="col-span-1">
           <CustomButton
-            style="bg-red-500 text-white hover:bg-red-300"
+            style="bg-red-500 text-white hover:bg-red-300 p-3"
             label="Delete"
             onClick={() => {}}
           />

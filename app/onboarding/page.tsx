@@ -6,13 +6,20 @@ import Second from "../components/form/Second";
 import Third from "../components/form/Third";
 import Forth from "../components/form/Forth";
 import Fifth from "../components/form/Fifth";
-import SelectStyle from "../components/form/SelectStyle";
+import SelectStyle from "../components/form/ResumeStyle";
 import { PrimaryButton, SecondaryButton } from "../components/Buttons";
+import CoverLetterStyle from "../components/form/CoverLetterStyle";
+import { useRouter } from "next/navigation";
 
 export default function OnBoardingPage() {
   const [step, setStep] = useState(1);
-
-  const nextStep = () => setStep((prev) => Math.min(prev + 1, 6));
+  const router = useRouter();
+  const nextStep = () => {
+    setStep((prev) => Math.min(prev + 1, 7));
+    if (step === 7) {
+      router.push("/builder");
+    }
+  };
   const prevStep = () => {
     setStep((prev) => Math.max(prev - 1, 1));
   };
@@ -30,6 +37,8 @@ export default function OnBoardingPage() {
         return <Fifth />;
       case 6:
         return <SelectStyle />;
+      case 7:
+        return <CoverLetterStyle />;
       default:
         return <First />;
     }

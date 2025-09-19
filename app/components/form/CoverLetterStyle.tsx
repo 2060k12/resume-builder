@@ -1,14 +1,12 @@
 "use client";
 import React from "react";
 import FormTemplateComponent from "./template/FormTemplateComponent";
-import { PrimaryButton, SecondaryButton } from "../Buttons";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 
-const SelectStyle = () => {
+const CoverLetterStyle = () => {
   return (
     <FormTemplateComponent
-      headerTitle={"Choose Your Resume Style"}
-      //   buttonCount={2}
+      headerTitle={"Let's style your cover letter"}
       subTitle={"You can always change them later."}
       formBody={
         <>
@@ -25,24 +23,8 @@ const SelectStyle = () => {
           </div>
         </>
       }
-      //   formButtons={
-      //     <>
-      //       <SecondaryButton
-      //         label="Back"
-      //         onClick={() => {
-      //           console.log("");
-      //         }}
-      //       />
-      //       <PrimaryButton
-      //         label="Continue"
-      //         onClick={() => {
-      //           console.log("");
-      //         }}
-      //       />
-      //     </>
-      //   }
     />
   );
 };
 
-export default SelectStyle;
+export default CoverLetterStyle;
