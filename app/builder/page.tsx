@@ -7,6 +7,14 @@ import {
 } from "../components/Buttons";
 import TextArea from "../components/TextArea";
 import EditResumeModal from "../components/EditResumeModal";
+import Template1 from "../template/component/Resume/template1/Template1";
+import Image from "next/image";
+import TextFileld from "../components/TextFileld";
+import {
+  RiSendPlane2Fill,
+  RiSendPlane2Line,
+  RiSendPlaneFill,
+} from "@remixicon/react";
 
 const BuilderPage = () => {
   return (
@@ -35,12 +43,46 @@ const BuilderPage = () => {
         label="Paste your Job Desctiption here."
         line={4}
       />
-      <div className="grid grid-cols-2 h-full gap-5">
-        <div className="shadow-lg text-center border-1 border-gray-200 p-2 h-full rounded-2xl">
-          Resume
-        </div>
-        <div className="shadow-lg  text-center border-1 border-gray-200 p-2 h-full rounded-2xl">
-          Cover Letter
+      {/* <div className="grid grid-cols-2 h-full gap-5"> */}
+      <div className=" h-full w-full justify-between flex items-center ">
+        {/* <div className="shadow-md  aspect-[210/297] bg-white w-[350px] h-full  "></div> */}
+        <div className="absolute grid grid-cols-3 gap-4 w-[78%] ">
+          <div className="shadow-md">
+            <h2 className="mb-1">Resume</h2>
+            <Image
+              src={"/template/resume/template1.png"}
+              width={400}
+              height={400}
+              alt="Generated Resume"
+              className="border-1 border-gray-200"
+            />
+          </div>
+          <div className="shadow-md ">
+            <h2 className="mb-1">Cover Letter</h2>
+            <Image
+              src={"/template/cover/template1.png"}
+              width={400}
+              height={400}
+              alt="Generated Cover Letter"
+              className="border-1 border-gray-200"
+            />
+          </div>
+          <div className="shadow-md rounded-2xl border-1 border-gray-300 p-4 ">
+            <h2 className="mb-1 bg-amber-400 text-white px-4 py-2 rounded-2xl ">
+              Talk to AI
+            </h2>
+            <div className="w-full h-[90%]  rounded-2xl mt-3 flex flex-col justify-between">
+              <div className="  bg-gray-100 h-full mb-2">a</div>
+              <div className=" h-fit rounded-xl flex justify-center items-center gap-2">
+                <div>
+                  <TextFileld label="Enter your message" type="text" />
+                </div>
+                <div className=" p-3 rounded-xl bg-blue-400">
+                  <RiSendPlaneFill color="white" size={20} />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
