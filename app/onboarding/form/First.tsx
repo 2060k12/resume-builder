@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import TextFileld from "../TextFileld";
-
 import FormTemplateComponent from "./template/FormTemplateComponent";
+import TextFileld from "@/app/components/TextFileld";
 
 const First = () => {
   // todo:// Need to add social media screen later

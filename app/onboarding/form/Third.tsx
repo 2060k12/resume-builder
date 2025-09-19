@@ -1,16 +1,16 @@
 "use client";
 import React from "react";
-import TextFileld from "../TextFileld";
-import { CustomButton } from "../Buttons";
-import FormTemplateComponent from "./template/FormTemplateComponent";
-import TextArea from "../TextArea";
 
-const Forth = () => {
+import FormTemplateComponent from "./template/FormTemplateComponent";
+import { CustomButton } from "@/app/components/Buttons";
+import TextFileld from "@/app/components/TextFileld";
+
+const Third = () => {
   return (
     <FormTemplateComponent
-      headerTitle={"Show Off Your Experience"}
+      headerTitle={"Your Academic Journey"}
       subTitle={
-        "List your most recent and relevant work history. Be sure to include your main duties and accomplishments."
+        "Provide details about your degrees and certifications. You can add more than one."
       }
       formBody={
         <>
@@ -23,30 +23,25 @@ const Forth = () => {
                 Bachelors
               </h4>
               <CustomButton
-                label="Add"
+                label="Add "
                 onClick={() => {}}
                 style="w-full border-gray-40 border-1 p-2 "
               />
             </div>
             <div className="col-span-3 flex flex-col gap-2">
+              <TextFileld type="text" label="School Name" />
+              <TextFileld type="text" label="Location" />
               <div className="flex gap-2">
-                <TextFileld type="text" label="Job Title" />
-                <div className="w-[80%]">
-                  <TextFileld type="text" label="Company Name" />
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <TextFileld type="text" label="Time Period (Start/End Date)" />{" "}
-                <div className="w-[80%]">
-                  <TextFileld type="text" label="Location" />
+                <TextFileld type="text" label="Degree/Certification" />
+                <div className="w-32">
+                  <TextFileld type="text" label="GPA" />
                 </div>
               </div>
 
-              <TextArea
-                line={2}
-                style="mb-2"
-                label="Responsibilities/Achievements"
-              />
+              <div className="grid grid-cols-2 gap-2">
+                <TextFileld type="text" label="Field of Study" />{" "}
+                <TextFileld type="text" label="Graduation Year" />
+              </div>
             </div>
           </div>
         </>
@@ -55,4 +50,4 @@ const Forth = () => {
   );
 };
 
-export default Forth;
+export default Third;

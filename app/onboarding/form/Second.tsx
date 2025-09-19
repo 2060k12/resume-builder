@@ -2,7 +2,7 @@
 import React from "react";
 
 import FormTemplateComponent from "./template/FormTemplateComponent";
-import TextArea from "../TextArea";
+import TextArea from "@/app/components/TextArea";
 
 const Second = () => {
   return (

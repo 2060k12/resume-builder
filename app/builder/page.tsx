@@ -6,17 +6,13 @@ import {
   SecondaryButton,
 } from "../components/Buttons";
 import TextArea from "../components/TextArea";
-import EditResumeModal from "../components/EditResumeModal";
-import Template1 from "../template/component/Resume/template1/Template1";
-import Image from "next/image";
 import TextFileld from "../components/TextFileld";
-import {
-  RiSendPlane2Fill,
-  RiSendPlane2Line,
-  RiSendPlaneFill,
-} from "@remixicon/react";
-
+import { RiSendPlaneFill } from "@remixicon/react";
+import Viewer from "./components/Viewer";
+import { useRouter } from "next/navigation";
 const BuilderPage = () => {
+  const router = useRouter();
+
   return (
     <div className="p-5 w-full h-full bg-white  shadow-2xl rounded-3xl flex flex-col ">
       <div className="h-fit rounded-xl mb-2 grid grid-cols-10 gap-2">
@@ -47,26 +43,16 @@ const BuilderPage = () => {
       <div className=" h-full w-full justify-between flex items-center ">
         {/* <div className="shadow-md  aspect-[210/297] bg-white w-[350px] h-full  "></div> */}
         <div className="absolute grid grid-cols-3 gap-4 w-[78%] ">
-          <div className="shadow-md">
-            <h2 className="mb-1">Resume</h2>
-            <Image
-              src={"/template/resume/template1.png"}
-              width={400}
-              height={400}
-              alt="Generated Resume"
-              className="border-1 border-gray-200"
-            />
-          </div>
-          <div className="shadow-md ">
-            <h2 className="mb-1">Cover Letter</h2>
-            <Image
-              src={"/template/cover/template1.png"}
-              width={400}
-              height={400}
-              alt="Generated Cover Letter"
-              className="border-1 border-gray-200"
-            />
-          </div>
+          <Viewer
+            onClick={() => router.push("/template")}
+            imgSrc="/template/resume/template1.png"
+            title="Resume"
+          />
+          <Viewer
+            onClick={() => router.push("/template")}
+            imgSrc="/template/cover/template1.png"
+            title="Cover Letter"
+          />
           <div className="shadow-md rounded-2xl border-1 border-gray-300 p-4 ">
             <h2 className="mb-1 bg-amber-400 text-white px-4 py-2 rounded-2xl ">
               Talk to AI

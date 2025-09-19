@@ -4,11 +4,11 @@ import EachSubSection from "./component/Resume/template1/EachSubSection";
 import Template1 from "./component/Resume/template1/Template1";
 import CoverTemplate1 from "./component/CoverLetter/CoverTemplate1";
 
-const page = () => {
+const EditResumePage = () => {
   return (
     <>
-      <div className=" bg-[#eeecec] w-screen h-screen flex justify-center items-center ">
-        <div className="shadow-md scale-70 mx-auto">
+      <div className="  h-screen flex justify-center items-center ">
+        <div className="shadow-md scale-70 ">
           <Template1 istemplate={false} />
           {/* <CoverTemplate1 /> */}
         </div>
@@ -17,4 +17,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default EditResumePage;

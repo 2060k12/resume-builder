@@ -1,15 +1,17 @@
 "use client";
 
-import First from "../components/form/First";
 import { useState } from "react";
-import Second from "../components/form/Second";
-import Third from "../components/form/Third";
-import Forth from "../components/form/Forth";
-import Fifth from "../components/form/Fifth";
-import SelectStyle from "../components/form/ResumeStyle";
+
 import { PrimaryButton, SecondaryButton } from "../components/Buttons";
-import CoverLetterStyle from "../components/form/CoverLetterStyle";
+
 import { useRouter } from "next/navigation";
+import First from "./form/First";
+import Second from "./form/Second";
+import Third from "./form/Third";
+import Forth from "./form/Forth";
+import Fifth from "./form/Fifth";
+import SelectStyle from "./form/ResumeStyle";
+import CoverLetterStyle from "./form/CoverLetterStyle";
 
 export default function OnBoardingPage() {
   const [step, setStep] = useState(1);
