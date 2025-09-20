@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import {
   CustomButton,
   PrimaryButton,
@@ -12,6 +12,7 @@ import Viewer from "./components/Viewer";
 import { useRouter } from "next/navigation";
 const BuilderPage = () => {
   const router = useRouter();
+  const [desc, setDesc] = useState("");
 
   return (
     <div className="p-5 w-full h-full bg-white  shadow-2xl rounded-3xl flex flex-col ">
@@ -35,6 +36,8 @@ const BuilderPage = () => {
       </div>
 
       <TextArea
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
         style="shadow-sm  mb-5"
         label="Paste your Job Desctiption here."
         line={4}
@@ -61,7 +64,7 @@ const BuilderPage = () => {
               <div className="  bg-gray-100 h-full mb-2">a</div>
               <div className=" h-fit rounded-xl flex justify-center items-center gap-2">
                 <div>
-                  <TextFileld label="Enter your message" type="text" />
+                  <TextFileld label="Enter your message" type="text" value="" />
                 </div>
                 <div className=" p-3 rounded-xl bg-blue-400">
                   <RiSendPlaneFill color="white" size={20} />

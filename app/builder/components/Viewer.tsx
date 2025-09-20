@@ -17,7 +17,7 @@ const Viewer = ({ imgSrc, title, onClick }: Props) => {
         width={400}
         height={400}
         alt="Generated Resume"
-        className="rounded-2xl  border-gray-50 border-1 hover:p-2 hover:border-none after:bg-red-200 after:absolute after:z-50"
+        className="rounded-2xl  border-gray-50 border-1 hover:p-2 hover:border-none transition-all ease-in duration-300"
       />
     </div>
   );
