@@ -1,7 +1,7 @@
 export type RegisterUser = {
-  fullName: String;
-  phoneNumber: String;
-  email: String;
-  address: String;
-  password: String;
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  address: string;
+  password: string;
 };

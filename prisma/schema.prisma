@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../app/generated/prisma"
 }
 
@@ -12,21 +12,20 @@ model User {
   id          String       @id @default(uuid()) @db.Uuid
   fullName    String
   phoneNumber String
-  email       String
+  email       String       @unique
   address     String
   password    String
-  details     UserDetails? @relation(fields: [detailsId], references: [id])
-  detailsId   String?      @unique @db.Uuid
-  experiences Experience[]
+  details     UserDetails?
 }
 
 model UserDetails {
-  id              String            @id @default(uuid()) @db.Uuid
   story           String
   academicJourney AcademicJourney[]
+  experiences     Experience[]
   hardSkills      String
   softSkills      String
-  user            User?
+  userId          String            @id @unique @db.Uuid
+  User            User              @relation(fields: [userId], references: [id])
 }
 
 model AcademicJourney {
@@ -38,16 +37,16 @@ model AcademicJourney {
   fieldOfStudy   String
   graduationYear String
   userDetailsId  String      @db.Uuid
-  userDetails    UserDetails @relation(fields: [userDetailsId], references: [id])
+  userDetails    UserDetails @relation(fields: [userDetailsId], references: [userId])
 }
 
 model Experience {
-  id               String @id @default(uuid()) @db.Uuid
-  userId           String @db.Uuid
-  user             User   @relation(fields: [userId], references: [id])
+  id               String      @id @default(uuid()) @db.Uuid
   jobTitle         String
   companyName      String
   timePeriod       String
   location         String
   responsibilities String
+  userDetailsId    String      @db.Uuid
+  userDetails      UserDetails @relation(fields: [userDetailsId], references: [userId])
 }
