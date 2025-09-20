@@ -1,6 +1,6 @@
+import EachSection from "@/app/template/component/Resume/template1/EachSection";
+import EachSubSection from "@/app/template/component/Resume/template1/EachSubSection";
 import React from "react";
-import EachSubSection from "./EachSubSection";
-import EachSection from "./EachSection";
 
 interface Props {
   istemplate: boolean;
@@ -32,6 +32,7 @@ const Template1 = ({ istemplate }: Props) => {
             </a>
           </div>
         </div>
+
         {/* Education */}
         <EachSection
           title="Education"

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CustomButton,
   PrimaryButton,
@@ -10,9 +10,36 @@ import TextFileld from "../components/TextFileld";
 import { RiSendPlaneFill } from "@remixicon/react";
 import Viewer from "./components/Viewer";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import OpenAI from "openai";
 const BuilderPage = () => {
   const router = useRouter();
   const [desc, setDesc] = useState("");
+  const userId = "842db853-2d8e-4ba9-b96a-383b3eeb8007";
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+  async function getUserDetails() {
+    try {
+      const res = await axios.get("/api/users/details/" + userId);
+      const userData = res.data;
+
+      // const resume = await axios.post("/api/openai", {
+      //   user: userData,
+      //   job: {
+      //     title: "Full-Stack Mobile Developer",
+      //     description:
+      //       "Looking for a developer with React Native, Node.js, AI integration experience...",
+      //   },
+      // });
+
+      // console.log(resume);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="p-5 w-full h-full bg-white  shadow-2xl rounded-3xl flex flex-col ">
@@ -64,7 +91,12 @@ const BuilderPage = () => {
               <div className="  bg-gray-100 h-full mb-2">a</div>
               <div className=" h-fit rounded-xl flex justify-center items-center gap-2">
                 <div>
-                  <TextFileld label="Enter your message" type="text" value="" />
+                  <TextFileld
+                    label="Enter your message"
+                    type="text"
+                    value=""
+                    onChange={(e) => {}}
+                  />
                 </div>
                 <div className=" p-3 rounded-xl bg-blue-400">
                   <RiSendPlaneFill color="white" size={20} />

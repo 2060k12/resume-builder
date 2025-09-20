@@ -3,13 +3,20 @@ import React, { ReactNode } from "react";
 interface Props {
   title: string;
   body: ReactNode;
+  headerFontSize: number;
+  bodyFontSize: number;
 }
-const EachSection = ({ title, body }: Props) => {
+const EachSection = ({
+  title,
+  body,
+  headerFontSize = 20,
+  bodyFontSize = 13,
+}: Props) => {
   return (
     <div>
-      <h2 className="text-xl">{title}</h2>
+      <h2 style={{ fontSize: headerFontSize }}>{title}</h2>
       <hr />
-      <div>{body}</div>
+      <div style={{ fontSize: bodyFontSize }}>{body}</div>
     </div>
   );
 };

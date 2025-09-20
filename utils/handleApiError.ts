@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { ApiError } from "./ApiError";
 import { ApiResponse } from "./ApiResponse";
 import { ZodError } from "zod";
-import { error } from "console";
 export function handleApiError(err: unknown, defaultStatus = 400) {
+  console.log(err);
   if (err instanceof ApiError) {
     const response: ApiResponse<null> = {
       message: err.message,
