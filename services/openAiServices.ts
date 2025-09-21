@@ -4,19 +4,22 @@ const openAi = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-export const requestForResume = async (userJson: object) => {
+export const requestForResume = async (userJson: object, jobJson: object) => {
   const inputString = JSON.stringify({ user: userJson });
 
   const prompt = `
 You are a resume-tailoring AI. 
 Input: A JSON object containing user details and a job description.
+
 \`\`\`json
 ${inputString}
 \`\`\`
+
 Task: Generate a tailored resume JSON strictly matching this structure:
+
 \`\`\`json
 {
-  "summary" :"",
+  "summary": "",
   "header": {
     "fullName": "",
     "phoneNumber": "",
@@ -31,7 +34,8 @@ Task: Generate a tailored resume JSON strictly matching this structure:
       "titleLeft": "",
       "titleRight": "",
       "bodyLeft": "",
-      "bodyRight": ""
+      "bodyRight": "",
+      "bulletPoints": []
     }
   ],
   "experience": [
@@ -40,7 +44,7 @@ Task: Generate a tailored resume JSON strictly matching this structure:
       "titleRight": "",
       "bodyLeft": "",
       "bodyRight": "",
-      "bulletPoints": [""]
+      "bulletPoints": []
     }
   ],
   "projects": [
@@ -49,7 +53,7 @@ Task: Generate a tailored resume JSON strictly matching this structure:
       "titleRight": "",
       "bodyLeft": "",
       "bodyRight": "",
-      "bulletPoints": [""]
+      "bulletPoints": []
     }
   ],
   "technicalSkills": [
@@ -58,16 +62,18 @@ Task: Generate a tailored resume JSON strictly matching this structure:
       "titleRight": "",
       "bodyLeft": "",
       "bodyRight": "",
-      "bulletPoints": [""]
+      "bulletPoints": []
     }
   ]
 }
 \`\`\`
+
 Instructions:
 - Only return **valid JSON**. No explanations, notes, or extra text.
-- Fill in all relevant fields using the user data and job description.
+- Ensure all objects match the exact field names above.
+- \`bulletPoints\` must always be present as an array (can be empty).
 - Highlight skills and achievements most relevant to the job.
-- Ensure all strings are double-quoted and no trailing commas exist.
+- All strings must use double quotes, and no trailing commas.
 `;
 
   console.log("abcp", prompt);
@@ -76,9 +82,7 @@ Instructions:
     const res = await openAi.responses.create({
       model: "gpt-4o-mini",
       input: prompt,
-      max_output_tokens: 1000,
     });
-
     const parsed = res.output_text;
     console.log(parsed);
     return parsed;

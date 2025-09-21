@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EachSection from "./EachSection";
 import EachSubSection from "./EachSubSection";
-import { TemplateEditProps } from "@/app/template/layout";
-
+import { TemplateEditProps } from "@/types/Resume";
+import { useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 const Template1 = ({
   linkGap,
   headerFontSize,
@@ -26,7 +27,7 @@ const Template1 = ({
               style={{ fontSize: nameFontSize }}
               className="  w-full text-center font-bold"
             >
-              {resumeData?.header.fullName}
+              {resumeData?.header?.fullName}
             </h1>
           </div>
 
@@ -37,18 +38,18 @@ const Template1 = ({
             <EachLink
               link="#"
               title={
-                resumeData?.header.phoneNumber
+                resumeData?.header?.phoneNumber
                   ? resumeData?.header.phoneNumber
                   : ""
               }
             />
             <EachLink
               link="#"
-              title={resumeData?.header.email ? resumeData?.header.email : ""}
+              title={resumeData?.header?.email ? resumeData?.header.email : ""}
             />
             <EachLink
               link={
-                resumeData?.header.links.linkedin
+                resumeData?.header?.links.linkedin
                   ? resumeData?.header.links.linkedin
                   : ""
               }
@@ -56,7 +57,7 @@ const Template1 = ({
             />
             <EachLink
               link={
-                resumeData?.header.links.github
+                resumeData?.header?.links.github
                   ? resumeData?.header.links.github
                   : ""
               }
@@ -88,8 +89,9 @@ const Template1 = ({
             title="Technical Skills"
             body={
               <>
-                {resumeData.technicalSkills.map((skills) => (
+                {resumeData.technicalSkills.map((skills, index) => (
                   <EachSkills
+                    key={index}
                     bodyFontSize={bodyFontSize}
                     title={skills.title}
                     body={skills.body}
@@ -110,8 +112,9 @@ const Template1 = ({
             title="Education"
             body={
               <div className="flex flex-col gap-1">
-                {resumeData.education.map((each) => (
+                {resumeData.education.map((each, index) => (
                   <EachSubSection
+                    key={index}
                     eachSubHeaderFontSize={eachSubHeaderFontSize}
                     bodyFontSize={bodyFontSize}
                     titleLeft={each.titleLeft}
@@ -161,8 +164,9 @@ const Template1 = ({
             title="Education"
             body={
               <div className="flex flex-col gap-1">
-                {resumeData.projects.map((each) => (
+                {resumeData.projects.map((each, index) => (
                   <EachSubSection
+                    key={index}
                     eachSubHeaderFontSize={eachSubHeaderFontSize}
                     bodyFontSize={bodyFontSize}
                     titleLeft={each.titleLeft}

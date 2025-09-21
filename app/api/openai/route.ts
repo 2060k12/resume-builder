@@ -5,12 +5,14 @@ import OpenAI from "openai";
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("1... working");
+    const requestBody = await req.json();
 
-    const body = await req.json();
-    console.log("22... working");
+    const { user, jobs } = requestBody;
+    const res = await requestForResume(user, jobs);
 
-    const res = await requestForResume(body);
+    console.log("------------------------------");
+    console.log(res);
+    console.log("------------------------------");
 
     return NextResponse.json({
       success: true,

@@ -1,6 +1,6 @@
 import React from "react";
 import Template1 from "./component/Resume/template1/Template1";
-import { TemplateEditProps } from "./layout";
+import { TemplateEditProps } from "@/types/Resume";
 
 const EditResumePage = ({
   linkGap,
@@ -24,7 +24,6 @@ const EditResumePage = ({
             linkGap={linkGap}
             resumeData={resumeData}
           />
-          {/* <CoverTemplate1 /> */}
         </div>
       </div>
     </>

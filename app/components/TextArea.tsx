@@ -8,6 +8,7 @@ interface Props {
   value?: string;
   onChange?: (e: any) => void;
   onBlur?: () => void;
+  maxLength?: number;
 }
 
 const TextArea = ({
@@ -17,6 +18,7 @@ const TextArea = ({
   style,
   onChange,
   onBlur,
+  maxLength = 500,
   value = "",
 }: Props) => {
   return (
@@ -26,7 +28,7 @@ const TextArea = ({
       placeholder={label}
       onChange={onChange}
       onBlur={onBlur}
-      maxLength={500}
+      maxLength={maxLength}
       rows={line}
     />
   );
