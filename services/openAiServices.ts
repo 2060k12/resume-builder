@@ -10,15 +10,13 @@ export const requestForResume = async (userJson: object) => {
   const prompt = `
 You are a resume-tailoring AI. 
 Input: A JSON object containing user details and a job description.
-
 \`\`\`json
 ${inputString}
 \`\`\`
-
 Task: Generate a tailored resume JSON strictly matching this structure:
-
 \`\`\`json
 {
+  "summary" :"",
   "header": {
     "fullName": "",
     "phoneNumber": "",
@@ -65,7 +63,6 @@ Task: Generate a tailored resume JSON strictly matching this structure:
   ]
 }
 \`\`\`
-
 Instructions:
 - Only return **valid JSON**. No explanations, notes, or extra text.
 - Fill in all relevant fields using the user data and job description.

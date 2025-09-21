@@ -9,6 +9,7 @@ const EditResumePage = ({
   eachSubHeaderFontSize,
   fontName,
   nameFontSize,
+  resumeData,
 }: TemplateEditProps) => {
   return (
     <>
@@ -21,6 +22,7 @@ const EditResumePage = ({
             eachSubHeaderFontSize={eachSubHeaderFontSize}
             fontName={fontName}
             linkGap={linkGap}
+            resumeData={resumeData}
           />
           {/* <CoverTemplate1 /> */}
         </div>

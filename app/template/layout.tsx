@@ -23,6 +23,83 @@ import { CSS } from "@dnd-kit/utilities";
 import TextFileld from "../components/TextFileld";
 import { RiBold, RiItalic, RiLink, RiText } from "@remixicon/react";
 
+export const mockData = {
+  header: {
+    fullName: "Jake Ryan",
+    phoneNumber: "123-456-7890",
+    email: "jake.ryan@example.com",
+    links: {
+      linkedin: "linkedin.com/in/jake-ryan",
+      github: "github.com/jake-ryan",
+    },
+  },
+  summary:
+    "A highly motivated and results-oriented software developer with 5+ years of experience in full-stack development. Proficient in building scalable web applications and collaborating in agile environments. Strong problem-solving and communication skills.",
+  education: [
+    {
+      titleLeft: "Southwestern University",
+      titleRight: "Georgetown, TX",
+      bodyLeft: "Bachelors of Arts in Computer Science, Minor in Business",
+      bodyRight: "Aug 2014 - May 2018",
+    },
+  ],
+  experience: [
+    {
+      titleLeft: "Full-stack Developer",
+      titleRight: "Jan 2021 - Present",
+      bodyLeft: "Tech Solutions Inc.",
+      bodyRight: "Austin, TX",
+      bulletPoints: [
+        "Developed and maintained a scalable e-commerce platform using React and Node.js.",
+        "Collaborated with a team of 5 developers to implement new features and bug fixes.",
+        "Optimized database queries, reducing load times by 30%.",
+      ],
+    },
+    {
+      titleLeft: "Junior Software Engineer",
+      titleRight: "June 2018 - Dec 2020",
+      bodyLeft: "Web Innovations Co.",
+      bodyRight: "Remote",
+      bulletPoints: [
+        "Assisted in the development of a company-wide internal communication tool.",
+        "Wrote and tested REST APIs using Python and Django.",
+        "Participated in code reviews and contributed to continuous integration pipelines.",
+      ],
+    },
+  ],
+  projects: [
+    {
+      titleLeft: "Personal Portfolio Website",
+      titleRight: "Mar 2023 - Apr 2023",
+      bodyLeft: "Personal Project",
+      bodyRight: "github.com/jake-ryan/portfolio",
+      bulletPoints: [
+        "Designed and developed a responsive portfolio website to showcase personal projects.",
+        "Built using Next.js and Tailwind CSS for a fast and modern user experience.",
+        "Deployed on Vercel with continuous deployment enabled.",
+      ],
+    },
+  ],
+  technicalSkills: [
+    {
+      title: "Languages",
+      body: "JavaScript, TypeScript, Python, C++, SQL",
+    },
+    {
+      title: "Frameworks",
+      body: "React, Node.js, Express, Django, Next.js",
+    },
+    {
+      title: "Tools & Platforms",
+      body: "Git, Docker, AWS, Vercel, Figma",
+    },
+    {
+      title: "Databases",
+      body: "PostgreSQL, MongoDB",
+    },
+  ],
+};
+
 export interface TemplateEditProps {
   linkGap: number;
   headerFontSize: number;
@@ -30,6 +107,40 @@ export interface TemplateEditProps {
   eachSubHeaderFontSize: number;
   nameFontSize: number;
   fontName: FontFamily;
+  resumeData?: ResumeData;
+}
+
+interface Link {
+  linkedin: string;
+  github: string;
+}
+
+interface Header {
+  fullName: string;
+  phoneNumber: string;
+  email: string;
+  links: Link;
+}
+
+interface SectionItem {
+  titleLeft: string;
+  titleRight: string;
+  bodyLeft: string;
+  bodyRight: string;
+  bulletPoints?: string[];
+}
+interface TechnicalSkill {
+  title: string;
+  body: string;
+}
+
+export interface ResumeData {
+  header: Header;
+  summary: string;
+  education: SectionItem[];
+  experience: SectionItem[];
+  projects: SectionItem[];
+  technicalSkills: TechnicalSkill[];
 }
 
 // types for fontfamily
@@ -63,6 +174,8 @@ const Layout = () => {
     setHeaderFontSize(Number(e.target.value));
   const handleBodyFontSizeChange = (e) =>
     setBodyFontSize(Number(e.target.value));
+  const handleSubHeadingFontSizeChange = (e) =>
+    setEachSubHeaderFontSize(Number(e.target.value));
 
   return (
     <div className="flex w-full bg-[#1e1e1e] h-screen box-border ">
@@ -99,6 +212,7 @@ const Layout = () => {
           fontName={fontName}
           linkGap={linkGap}
           nameFontSize={nameFontSize}
+          resumeData={mockData}
         />
       </div>
       <div className="bg-[#2c2c2c] text-white w-1/3 rounded-2xl m-4 border-1 border-[#4c4c4c] px-2 py-4 flex flex-col gap-3">
@@ -110,7 +224,7 @@ const Layout = () => {
           {/* Header Font Size */}
           <div className="flex justify-between items-center gap-3 ">
             <h1 className="w-1/2 rounded-lg bg-red-100 px-4 text-black border-1 p-1">
-              Header Font
+              Heading
             </h1>
             <select
               className="border-1 p-2 rounded-lg w-1/2  "
@@ -123,10 +237,28 @@ const Layout = () => {
               ))}
             </select>
           </div>
+
+          {/* sub heading */}
+          <div className="flex justify-between items-center gap-3 ">
+            <h1 className="w-1/2 rounded-lg bg-red-100 px-4 text-black border-1 p-1">
+              Sub Heading
+            </h1>
+            <select
+              className="border-1 p-2 rounded-lg w-1/2  "
+              id="options"
+              value={eachSubHeaderFontSize}
+              onChange={handleSubHeadingFontSizeChange}
+            >
+              {Array.from({ length: 15 }, (_, i) => (
+                <option value={i + 10}> {i + 10}</option>
+              ))}
+            </select>
+          </div>
+
           {/* Body Font Size Change */}
           <div className="flex justify-between items-center gap-3 ">
             <h1 className="w-1/2 rounded-lg bg-red-100 px-4 text-black border-1 p-1">
-              Body Font
+              Body
             </h1>
             <select
               className="w-1/2 border-1 p-2 rounded-lg "
