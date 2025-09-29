@@ -1,20 +1,33 @@
 import React from "react";
-import EachSection from "./component/Resume/template1/EachSection";
-import EachSubSection from "./component/Resume/template1/EachSubSection";
 import Template1 from "./component/Resume/template1/Template1";
-import CoverTemplate1 from "./component/CoverLetter/CoverTemplate1";
+import { TemplateEditProps } from "@/types/Resume";
 
-const page = () => {
+const EditResumePage = ({
+  linkGap,
+  headerFontSize,
+  bodyFontSize,
+  eachSubHeaderFontSize,
+  fontName,
+  nameFontSize,
+  resumeData,
+}: TemplateEditProps) => {
   return (
     <>
-      <div className=" bg-[#eeecec] w-screen h-screen flex justify-center items-center ">
-        <div className="shadow-md scale-70 mx-auto">
-          <Template1 istemplate={false} />
-          {/* <CoverTemplate1 /> */}
+      <div className="  h-screen flex justify-center items-center ">
+        <div className="shadow-md scale-70 ">
+          <Template1
+            nameFontSize={nameFontSize}
+            bodyFontSize={bodyFontSize}
+            headerFontSize={headerFontSize}
+            eachSubHeaderFontSize={eachSubHeaderFontSize}
+            fontName={fontName}
+            linkGap={linkGap}
+            resumeData={resumeData}
+          />
         </div>
       </div>
     </>
   );
 };
 
-export default page;
+export default EditResumePage;

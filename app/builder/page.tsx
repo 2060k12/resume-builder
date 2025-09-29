@@ -1,88 +1,80 @@
 "use client";
 import React from "react";
-import {
-  CustomButton,
-  PrimaryButton,
-  SecondaryButton,
-} from "../components/Buttons";
 import TextArea from "../components/TextArea";
-import EditResumeModal from "../components/EditResumeModal";
+import Viewer from "./components/Viewer";
+import { useRouter } from "next/navigation";
+import HeaderButton from "./components/HeaderButton";
+import TalkToAi from "./components/TalkToAi";
 import Template1 from "../template/component/Resume/template1/Template1";
-import Image from "next/image";
-import TextFileld from "../components/TextFileld";
-import {
-  RiSendPlane2Fill,
-  RiSendPlane2Line,
-  RiSendPlaneFill,
-} from "@remixicon/react";
+import { ResumeData } from "@/types/Resume";
 
-const BuilderPage = () => {
+interface Props {
+  handleGenerateResume: () => void;
+  desc: string;
+  handleDesc: (e: any) => void;
+  resumeData?: ResumeData;
+}
+
+const BuilderPage = ({
+  handleGenerateResume,
+  desc,
+  handleDesc,
+  resumeData,
+}: Props) => {
+  const router = useRouter();
   return (
     <div className="p-5 w-full h-full bg-white  shadow-2xl rounded-3xl flex flex-col ">
-      <div className="h-fit rounded-xl mb-2 grid grid-cols-10 gap-2">
-        <div className="col-span-2">
-          <PrimaryButton label="Generate Now" onClick={() => {}} />
-        </div>
-        <div className="col-span-1">
-          <SecondaryButton label="Download" onClick={() => {}} />
-        </div>
-        <div className="col-span-2">
-          <SecondaryButton label="Choose Template" onClick={() => {}} />
-        </div>
-        <div className="col-span-1">
-          <CustomButton
-            style="bg-red-500 text-white hover:bg-red-300 p-3"
-            label="Delete"
-            onClick={() => {}}
-          />
-        </div>
-      </div>
+      <HeaderButton
+        chooseTemplateOnClick={() => {}}
+        downloadOnClick={() => {}}
+        generateOnClick={handleGenerateResume}
+        deleteOnClick={() => {}}
+      />
 
       <TextArea
+        value={desc}
+        onChange={handleDesc}
         style="shadow-sm  mb-5"
         label="Paste your Job Desctiption here."
         line={4}
+        maxLength={2000}
       />
-      {/* <div className="grid grid-cols-2 h-full gap-5"> */}
-      <div className=" h-full w-full justify-between flex items-center ">
-        {/* <div className="shadow-md  aspect-[210/297] bg-white w-[350px] h-full  "></div> */}
-        <div className="absolute grid grid-cols-3 gap-4 w-[78%] ">
-          <div className="shadow-md">
-            <h2 className="mb-1">Resume</h2>
-            <Image
-              src={"/template/resume/template1.png"}
-              width={400}
-              height={400}
-              alt="Generated Resume"
-              className="border-1 border-gray-200"
+
+      <div className=" h-screen w-full   flex items-center justify-center ">
+        <div className="absolute left-10 scale-[0.45] ">
+          <Viewer
+            onClick={() => router.push("/template")}
+            Item=<Template1
+              nameFontSize={10}
+              bodyFontSize={10}
+              headerFontSize={10}
+              eachSubHeaderFontSize={10}
+              fontName={"Arial"}
+              linkGap={3}
+              resumeData={resumeData}
             />
-          </div>
-          <div className="shadow-md ">
-            <h2 className="mb-1">Cover Letter</h2>
-            <Image
-              src={"/template/cover/template1.png"}
-              width={400}
-              height={400}
-              alt="Generated Cover Letter"
-              className="border-1 border-gray-200"
+            title="Resume"
+          />
+        </div>
+
+        <div className="absolute left-110  scale-[0.45] ">
+          <Viewer
+            onClick={() => router.push("/template")}
+            Item=<Template1
+              nameFontSize={14}
+              bodyFontSize={14}
+              headerFontSize={14}
+              eachSubHeaderFontSize={14}
+              fontName={"Arial"}
+              linkGap={3}
+              resumeData={resumeData}
             />
-          </div>
-          <div className="shadow-md rounded-2xl border-1 border-gray-300 p-4 ">
-            <h2 className="mb-1 bg-amber-400 text-white px-4 py-2 rounded-2xl ">
-              Talk to AI
-            </h2>
-            <div className="w-full h-[90%]  rounded-2xl mt-3 flex flex-col justify-between">
-              <div className="  bg-gray-100 h-full mb-2">a</div>
-              <div className=" h-fit rounded-xl flex justify-center items-center gap-2">
-                <div>
-                  <TextFileld label="Enter your message" type="text" />
-                </div>
-                <div className=" p-3 rounded-xl bg-blue-400">
-                  <RiSendPlaneFill color="white" size={20} />
-                </div>
-              </div>
-            </div>
-          </div>
+            title="Resume"
+          />
+        </div>
+
+        <div className="absolute right-0   ">
+          {/* <TalkToAi onClick={() => {}} /> */}
         </div>
       </div>
     </div>

@@ -1,147 +1,230 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import EachSection from "./EachSection";
 import EachSubSection from "./EachSubSection";
-
-interface Props {
-  istemplate: boolean;
-}
-
-const Template1 = ({ istemplate }: Props) => {
+import { TemplateEditProps } from "@/types/Resume";
+import { useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+const Template1 = ({
+  linkGap,
+  headerFontSize,
+  bodyFontSize,
+  eachSubHeaderFontSize,
+  fontName,
+  nameFontSize,
+  resumeData,
+}: TemplateEditProps) => {
   return (
     <>
-      <div className={`flex flex-col w-[210mm] h-[297mm] bg-white  p-10 gap-2`}>
+      <div
+        style={{ fontFamily: fontName }}
+        className={`flex flex-col w-[210mm] h-[297mm] bg-white p-10 gap-2`}
+      >
         {/* header */}
         <div className=" mb-2">
           <div>
-            <h1 className="text-3xl  w-full text-center font-bold">
-              Jake Ryan
+            <h1
+              style={{ fontSize: nameFontSize }}
+              className="  w-full text-center font-bold"
+            >
+              {resumeData?.header?.fullName}
             </h1>
           </div>
-          <div className=" flex gap-3 justify-center ">
-            <a href="http://">
-              <h4>123-456-789</h4>
-            </a>
-            <a href="http://">
-              <h4>jake@edu.au</h4>
-            </a>
-            <a href="http://">
-              <h4>linkedin.com/in/jake</h4>
-            </a>
-            <a href="http://">
-              <h4>github.com/jake</h4>
-            </a>
+
+          <div
+            className="flex justify-center"
+            style={{ fontSize: bodyFontSize, gap: linkGap }}
+          >
+            <EachLink
+              link="#"
+              title={
+                resumeData?.header?.phoneNumber
+                  ? resumeData?.header.phoneNumber
+                  : ""
+              }
+            />
+            <EachLink
+              link="#"
+              title={resumeData?.header?.email ? resumeData?.header.email : ""}
+            />
+            <EachLink
+              link={
+                resumeData?.header?.links.linkedin
+                  ? resumeData?.header.links.linkedin
+                  : ""
+              }
+              title="LinkedIn"
+            />
+            <EachLink
+              link={
+                resumeData?.header?.links.github
+                  ? resumeData?.header.links.github
+                  : ""
+              }
+              title="Github"
+            />
           </div>
         </div>
-        {/* Education */}
-        <EachSection
-          title="Education"
-          body={
-            <div className="flex flex-col gap-1">
-              <EachSubSection
-                titleLeft="Southwestern University"
-                titleRight="Georgetown, TX"
-                bodyLeft="Bachelors of Arts in Computer Science, Minor in Business"
-                bodyRight="Aug 2014 - May 2018"
-              />
-              <EachSubSection
-                titleLeft="Southwestern University"
-                titleRight="Georgetown, TX"
-                bodyLeft="Bachelors of Arts in Computer Science, Minor in Business"
-                bodyRight="Aug 2014 - May 2018"
-              />
-              <EachSubSection
-                titleLeft="Southwestern University"
-                titleRight="Georgetown, TX"
-                bodyLeft="Bachelors of Arts in Computer Science, Minor in Business"
-                bodyRight="Aug 2014 - May 2018"
-              />
-            </div>
-          }
-        />
-        {/* Experience */}
-        <EachSection
-          title="Experience"
-          body={
-            <div className="flex flex-col gap-1">
-              <EachSubSection
-                titleLeft="Undergraduate Research Assistant"
-                titleRight="June 2020 - Present "
-                bodyLeft="Texas A & M Univeersity"
-                bodyRight="College Station, TX"
-                bulletPoints={[
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                ]}
-              />
-              <EachSubSection
-                titleLeft="Moyai"
-                titleRight="June 2020 - Present "
-                bodyLeft="Full-stack developer"
-                bodyRight="Remote"
-                bulletPoints={[
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                ]}
-              />
-            </div>
-          }
-        />
-
-        {/* Projects */}
-        <EachSection
-          title="Projects"
-          body={
-            <div className="flex flex-col gap-1">
-              <EachSubSection
-                titleLeft="Work place management system"
-                titleRight="June 2020 - Present "
-                bodyLeft="Texas A & M Univeersity"
-                bodyRight="College Station, TX"
-                bulletPoints={[
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                ]}
-              />
-              <EachSubSection
-                titleLeft="Moyai"
-                titleRight="June 2020 - Present "
-                bodyLeft="Full-stack developer"
-                bodyRight="Remote"
-                bulletPoints={[
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                ]}
-              />
-            </div>
-          }
-        />
+        {/* Summary */}
+        {resumeData?.summary ? (
+          <EachSection
+            headerFontSize={headerFontSize}
+            bodyFontSize={bodyFontSize}
+            title="Professional Summary"
+            body={
+              <>
+                <p>{resumeData?.summary}</p>
+              </>
+            }
+          />
+        ) : (
+          ""
+        )}
 
         {/* Technical Skills */}
-        <EachSection
-          title="Technical Skills"
-          body={
-            <div className="flex flex-col gap-1">
-              <EachSubSection
-                titleLeft="Work place management system"
-                titleRight="June 2020 - Present "
-                bodyLeft="Texas A & M Univeersity"
-                bodyRight="College Station, TX"
-                bulletPoints={[
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                  "communicate with managers to setup campus computers used on campus",
-                ]}
-              />
-            </div>
-          }
-        />
+        {resumeData?.technicalSkills ? (
+          <EachSection
+            headerFontSize={headerFontSize}
+            bodyFontSize={bodyFontSize}
+            title="Technical Skills"
+            body={
+              <>
+                {resumeData.technicalSkills.map((skills, index) => (
+                  <EachSkills
+                    key={index}
+                    bodyFontSize={bodyFontSize}
+                    title={skills.title}
+                    body={skills.body}
+                  />
+                ))}
+              </>
+            }
+          />
+        ) : (
+          ""
+        )}
+
+        {/* Education */}
+        {resumeData?.education ? (
+          <EachSection
+            headerFontSize={headerFontSize}
+            bodyFontSize={bodyFontSize}
+            title="Education"
+            body={
+              <div className="flex flex-col gap-1">
+                {resumeData.education.map((each, index) => (
+                  <EachSubSection
+                    key={index}
+                    eachSubHeaderFontSize={eachSubHeaderFontSize}
+                    bodyFontSize={bodyFontSize}
+                    titleLeft={each.titleLeft}
+                    titleRight={each.titleRight}
+                    bodyLeft={each.bodyLeft}
+                    bodyRight={each.bodyRight}
+                    bulletPoints={each.bulletPoints ? each.bulletPoints : []}
+                  />
+                ))}
+              </div>
+            }
+          />
+        ) : (
+          ""
+        )}
+
+        {/* Experience */}
+        {resumeData?.experience ? (
+          <EachSection
+            headerFontSize={headerFontSize}
+            bodyFontSize={bodyFontSize}
+            title="Education"
+            body={
+              <div className="flex flex-col gap-1">
+                {resumeData.experience.map((each) => (
+                  <EachSubSection
+                    eachSubHeaderFontSize={eachSubHeaderFontSize}
+                    bodyFontSize={bodyFontSize}
+                    titleLeft={each.titleLeft}
+                    titleRight={each.titleRight}
+                    bodyLeft={each.bodyLeft}
+                    bodyRight={each.bodyRight}
+                    bulletPoints={each.bulletPoints ? each.bulletPoints : []}
+                  />
+                ))}
+              </div>
+            }
+          />
+        ) : (
+          ""
+        )}
+        {/* Projects */}
+        {resumeData?.projects ? (
+          <EachSection
+            headerFontSize={headerFontSize}
+            bodyFontSize={bodyFontSize}
+            title="Education"
+            body={
+              <div className="flex flex-col gap-1">
+                {resumeData.projects.map((each, index) => (
+                  <EachSubSection
+                    key={index}
+                    eachSubHeaderFontSize={eachSubHeaderFontSize}
+                    bodyFontSize={bodyFontSize}
+                    titleLeft={each.titleLeft}
+                    titleRight={each.titleRight}
+                    bodyLeft={each.bodyLeft}
+                    bodyRight={each.bodyRight}
+                    bulletPoints={each.bulletPoints ? each.bulletPoints : []}
+                  />
+                ))}
+              </div>
+            }
+          />
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
 };
 
 export default Template1;
+
+const EachSkills = ({
+  bodyFontSize,
+  title,
+  body,
+}: {
+  title: string;
+  body: string;
+
+  bodyFontSize: number;
+}) => {
+  return (
+    <div className="grid grid-cols-12">
+      <h3 style={{ fontSize: body }} className="col-span-2 font-bold">
+        {title}
+      </h3>
+      <h4 style={{ fontSize: bodyFontSize }} className="col-span-10">
+        {body}
+      </h4>
+    </div>
+  );
+};
+
+const EachLink = ({
+  link,
+  title,
+  style,
+}: {
+  link: string;
+  title: string;
+  style?: React.CSSProperties;
+}) => {
+  return (
+    <div>
+      <a style={style} href={link}>
+        <h4>{title}</h4>
+      </a>
+    </div>
+  );
+};
